@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { useToast } from "@/hooks/use-toast"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form"
@@ -65,7 +64,7 @@ export default function RegisterForm() {
           name="fullName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Ім'я</FormLabel>
+              <FormLabel>Ім&apos;я</FormLabel>
               <FormControl>
                 <Input placeholder="Ваш псевдонім" {...field} />
               </FormControl>
@@ -188,7 +187,7 @@ export default function RegisterForm() {
         </Button>
       </div>
       <div className="text-sm text-center mt-5">
-              Вже зареєстрованний?{" "}
+              Вже зареєстрований?
               <Link className="underline underline-offset-4" href="/auth/login">Авторизація</Link>
         </div>
 

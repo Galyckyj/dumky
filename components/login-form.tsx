@@ -26,7 +26,7 @@ export function LoginForm({
             </a>
             <h1 className="text-xl font-bold">Вітаю в Dumky.</h1>
             <div className="text-center text-sm">
-              Не маєш акаунту?{" "}
+              Не маєш акаунту?
               <Link className="underline underline-offset-4" href="/auth/register">Реєстрація</Link>
             </div>
           </div>
@@ -77,8 +77,8 @@ export function LoginForm({
           Продовжити з Google
         </Button>
       </div>
-      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary  ">
-        Натискаючи "Продовжити", ви погоджуєтеся з нашими <a href="#">Умовами надання послуг</a> та <a href="#">Політикою конфіденційності</a>.
+      <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+        Натискаючи &quot;Продовжити&quot;, ви погоджуєтеся з нашими <a href="#">Умовами надання послуг</a> та <a href="#">Політикою конфіденційності</a>.
       </div>
     </div>
   )
