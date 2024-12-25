@@ -28,9 +28,7 @@ export default function RegisterPage() {
               Або
             </span>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <AuthProviders />
-          </div>
+          <AuthProviders />
         </div>
       </section>
     </main>
