@@ -48,7 +48,9 @@ const ProfilePage = async () => {
             </div>
           </div>
           <div>
-            <h1 className="font-bold text-xl">Author Name</h1>
+            <h1 className="font-bold text-xl">
+              {session.user.username || session.user.name}
+            </h1>
           </div>
           <div className="mt-5">
             <Button variant="outline">Edit Profile</Button>
