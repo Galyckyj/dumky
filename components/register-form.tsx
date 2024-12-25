@@ -66,7 +66,7 @@ const RegisterForm = () => {
     });
 
     if (response.ok) {
-      router.push("/auth/login");
+      router.push("/login");
     } else {
       const data = await response.json();
       console.error(data, "Registration failed");
