@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { BackButton } from "@/components/ui/back-button";
+import Link from "next/link";
 
 const ProfilePage = async () => {
   const session = await getServerSession(authOptions);
@@ -158,6 +159,16 @@ const ProfilePage = async () => {
       </div>
     );
   }
+  return (
+    <div>
+      <div>Ви маєте авторизуватись для перегляду цієї сторінки!</div>
+      <div>
+        <Button>
+          <Link href="/login">Увійти</Link>
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 export default ProfilePage;
