@@ -25,7 +25,7 @@ export default function LoginPage() {
 
         <p className="text-sm text-muted-foreground text-center">
           Не маєш акаунту?{" "}
-          <Link href="/auth/register" className="underline">
+          <Link href="/register" className="underline">
             Зареєструватися
           </Link>
         </p>

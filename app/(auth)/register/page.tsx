@@ -17,7 +17,7 @@ export default function RegisterPage() {
 
         <p className="text-sm text-muted-foreground text-center">
           Вже маєш акаунт?{" "}
-          <Link href="/auth/login" className="underline">
+          <Link href="/login" className="underline">
             Увійти
           </Link>
         </p>
