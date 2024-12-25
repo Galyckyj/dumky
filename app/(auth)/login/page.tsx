@@ -49,7 +49,7 @@ export default function LoginPage() {
             <OAuthButton
               providerName="Google"
               icon={FaGoogle}
-              onSignIn={handleGoogleSignIn}
+              onSignIn="google"
             />
           </div>
         </div>

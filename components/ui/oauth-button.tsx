@@ -1,14 +1,18 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { HTMLAttributes, useState } from "react";
+import { useState } from "react";
 import { IconType } from "react-icons";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 
-interface OAuthButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  providerName: string; // Назва провайдера
-  icon?: IconType; // Іконка з бібліотеки react-icons
-  iconUrl?: string; // URL зображення іконки
-  onSignIn: () => Promise<void>; // Функція для входу
+interface OAuthButtonProps {
+  providerName: string;
+  icon?: IconType;
+  iconUrl?: string;
+  onSignIn: string; // Changed to string for provider name
+  className?: string;
 }
 
 export function OAuthButton({
@@ -24,9 +28,9 @@ export function OAuthButton({
   const handleClick = async () => {
     try {
       setIsLoading(true);
-      await onSignIn();
+      await signIn(onSignIn, { callbackUrl: "/" });
     } catch (error) {
-      console.error(`Помилка входу через ${providerName}:`, error);
+      console.error(`Error signing in with ${providerName}:`, error);
     } finally {
       setIsLoading(false);
     }
@@ -60,28 +64,8 @@ export function OAuthButton({
   );
 }
 
-// Компонент індикатора завантаження
 function LoadingSpinner() {
   return (
-    <svg
-      className="h-4 w-4 animate-spin"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      />
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-      />
-    </svg>
+    <div className="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent" />
   );
 }

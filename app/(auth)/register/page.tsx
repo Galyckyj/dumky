@@ -1,14 +1,9 @@
 import RegisterForm from "@/components/register-form";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { OAuthButton } from "@/components/ui/oauth-button";
-import { FaGoogle } from "react-icons/fa";
-import { signIn } from "next-auth/react";
+import { AuthProviders } from "@/components/auth/auth-providers";
 
 export default function RegisterPage() {
-  const handleGoogleSignIn = async () => {
-    await signIn("google", { callbackUrl: "/" });
-  };
   return (
     <main className="flex min-h-svh flex-col items-center justify-center gap-6 bg-background md:p-10">
       <section className="w-full max-w-sm flex flex-col gap-3">
@@ -43,11 +38,7 @@ export default function RegisterPage() {
               </svg>
               Продовжити з Apple
             </Button>
-            <OAuthButton
-              providerName="Google"
-              icon={FaGoogle}
-              onSignIn={handleGoogleSignIn}
-            />
+            <AuthProviders />
           </div>
         </div>
       </section>
