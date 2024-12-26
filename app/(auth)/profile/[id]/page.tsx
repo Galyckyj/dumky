@@ -1,3 +1,5 @@
+"use client";
+
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -5,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { BackButton } from "@/components/ui/back-button";
 import db from "@/lib/db";
-import { EditProfileButton } from "@/components/ui/editprofile-button";
+// import EditProfileButton from "@/components/ui/editprofile-button";
 import { DialogCloseButton } from "@/components/ui/shareprofile-button";
 
 export default async function ProfilePage({
@@ -58,7 +60,7 @@ export default async function ProfilePage({
 
       {isOwnProfile ? (
         <div className="mt-5 flex gap-5">
-          <EditProfileButton />
+          {/* <EditProfileButton /> */}
           <DialogCloseButton userId={session.user.id} />
         </div>
       ) : (
