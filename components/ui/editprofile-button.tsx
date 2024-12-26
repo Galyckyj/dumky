@@ -1,6 +1,4 @@
-// components/ui/editprofile-button.tsx
-
-"use client"; // Вказуємо, що компонент клієнтський
+"use client";
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
@@ -9,38 +7,31 @@ import {
   Dialog,
   DialogTrigger,
   DialogContent,
-  DialogHeader,
   DialogFooter,
+  DialogTitle,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast"; // Для показу повідомлень
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
-export default async function EditProfileButton({
-  params,
-}: {
-  params: Promise<{ name: string }>;
-}) {
-  const session = await getServerSession(authOptions);
-  console.log(session);
-
-  const userId = (await params).name;
-
+const EditProfileButton = () => {
+  const { data: session } = useSession(); // Отримання даних сесії
   const [newName, setNewName] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const handleSaveChanges = async () => {
-    if (!session) {
+    if (!session?.user?.id) {
       toast({ description: "Ви не авторизовані." });
       return;
     }
 
     setLoading(true);
 
-    // Оновлення профілю в базі даних
     try {
       const response = await fetch("/api/update-profile", {
         method: "POST",
@@ -51,9 +42,12 @@ export default async function EditProfileButton({
       });
 
       if (response.ok) {
+        router.refresh();
+        setOpen(false);
         toast({ description: "Профіль оновлено." });
       } else {
-        toast({ description: "Не вдалося оновити профіль." });
+        const { error } = await response.json();
+        toast({ description: error || "Не вдалося оновити профіль." });
       }
     } catch (error) {
       toast({ description: "Помилка при оновленні профілю." });
@@ -63,18 +57,19 @@ export default async function EditProfileButton({
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="outline">Редагувати профіль</Button>
       </DialogTrigger>
 
       <DialogContent>
-        <DialogHeader>
+        <DialogTitle>Редагування профілю</DialogTitle>
+        {/* <DialogHeader>
           <h2>Редагувати профіль</h2>
-        </DialogHeader>
+        </DialogHeader> */}
 
         <div className="space-y-4">
-          <div>
+          <div className="flex flex-col gap-4 mt-5">
             <Label htmlFor="name">Нове ім'я</Label>
             <Input
               id="name"
@@ -85,7 +80,7 @@ export default async function EditProfileButton({
           </div>
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="flex">
           <Button onClick={handleSaveChanges} disabled={loading}>
             {loading ? "Зберігаємо..." : "Зберегти"}
           </Button>
@@ -93,4 +88,6 @@ export default async function EditProfileButton({
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default EditProfileButton;

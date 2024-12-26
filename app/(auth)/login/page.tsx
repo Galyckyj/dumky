@@ -1,5 +1,3 @@
-"use client";
-
 import { LoginForm } from "@/components/login-form";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
@@ -46,11 +44,7 @@ export default function LoginPage() {
               </svg>
               Продовжити з Apple
             </Button>
-            <OAuthButton
-              providerName="Google"
-              icon={FaGoogle}
-              onSignIn="google"
-            />
+            <OAuthButton provider="google" />
           </div>
         </div>
         <div className="text-balance text-center text-xs text-muted-foreground mt-5">

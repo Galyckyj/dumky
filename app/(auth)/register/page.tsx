@@ -1,7 +1,9 @@
+"use client";
+
 import RegisterForm from "@/components/register-form";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { AuthProviders } from "@/components/auth/auth-providers";
+import { OAuthButton } from "@/components/ui/oauth-button";
 
 export default function RegisterPage() {
   return (
@@ -28,7 +30,10 @@ export default function RegisterPage() {
               Або
             </span>
           </div>
-          <AuthProviders />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <OAuthButton provider="apple" disabled />
+            <OAuthButton provider="google" />
+          </div>
         </div>
       </section>
     </main>
