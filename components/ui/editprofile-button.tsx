@@ -29,7 +29,7 @@ export function EditProfileButton() {
     if (!newName) {
       console.log("Please enter a valid name");
       toast({
-        description: "Please enter a valid name",
+        description: "Введи будь ласка коретне ім'я",
       });
       return;
     }
@@ -42,14 +42,13 @@ export function EditProfileButton() {
       console.log("Profile updated successfully");
 
       toast({
-        description: "Profile updated successfully",
+        description: "І'мя успішно оновлено",
       });
       router.refresh(); // Перезавантажуємо сторінку, щоб відобразити нові дані
     } catch (error) {
       console.log("Failed to update profile");
-
       toast({
-        description: "Failed to update profile",
+        description: "Помилка в оновлені профілю",
       });
     } finally {
       setLoading(false);
@@ -59,19 +58,19 @@ export function EditProfileButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="outline">Редагувати</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>Редагувати профіль</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Внеси зміни до свого профілю тут. Натисни зберегти, коли закінчиш.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="name" className="text-right">
-              Name
+              Ім'я
             </Label>
             <Input
               value={newName}
@@ -84,11 +83,11 @@ export function EditProfileButton() {
         <DialogFooter>
           <DialogClose asChild>
             <Button type="button" variant="secondary">
-              Cancel
+              Відхилити
             </Button>
           </DialogClose>
           <Button onClick={handleSaveChanges} disabled={loading}>
-            {loading ? "Saving..." : "Save Changes"}
+            {loading ? "Збереження..." : "Зберегти"}
           </Button>
         </DialogFooter>
       </DialogContent>

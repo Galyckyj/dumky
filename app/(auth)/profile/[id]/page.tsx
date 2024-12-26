@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { BackButton } from "@/components/ui/back-button";
 import db from "@/lib/db";
-// import EditProfileButton from "@/components/ui/editprofile-button";
+import { EditProfileButton } from "@/components/ui/editprofile-button";
 
 export default async function ProfilePage({
   params,
@@ -56,7 +56,9 @@ export default async function ProfilePage({
       </div>
 
       {isOwnProfile ? (
-        <div className="mt-5">{/* <EditProfileButton /> */}</div>
+        <div className="mt-5">
+          <EditProfileButton />
+        </div>
       ) : (
         <div className="mt-5">
           <Button variant="outline" disabled>
