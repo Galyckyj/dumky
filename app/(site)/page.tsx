@@ -1,14 +1,18 @@
 import { Button } from "@/components/ui/button";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
   return (
     <div>
       <h1>Home</h1>
-
-      <Button variant="outline" className="mt-5">
-        <Link href="/profile">Профіль</Link>
-      </Button>
+      {session?.user?.id && (
+        <Button variant="outline" className="mt-5">
+          <Link href={`/profile/${session.user.id}`}>Профіль</Link>
+        </Button>
+      )}
     </div>
   );
 }
