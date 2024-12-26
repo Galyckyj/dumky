@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { BackButton } from "@/components/ui/back-button";
 import db from "@/lib/db";
 import { EditProfileButton } from "@/components/ui/editprofile-button";
+import { DialogCloseButton } from "@/components/ui/shareprofile-button";
 
 export default async function ProfilePage({
   params,
@@ -56,8 +57,9 @@ export default async function ProfilePage({
       </div>
 
       {isOwnProfile ? (
-        <div className="mt-5">
+        <div className="mt-5 flex gap-5">
           <EditProfileButton />
+          <DialogCloseButton userId={session.user.id} />
         </div>
       ) : (
         <div className="mt-5">
