@@ -12,6 +12,7 @@ export function BackButton() {
       router.back(); // Повернення на попередню сторінку
     } else {
       router.push("/"); // Перехід на головну сторінку, якщо історії немає
+      console.log("Немає історії");
     }
   };
 

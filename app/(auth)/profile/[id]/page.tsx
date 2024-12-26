@@ -1,12 +1,11 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { PrismaClient } from "@prisma/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { BackButton } from "@/components/ui/back-button";
-import Link from "next/link";
 import db from "@/lib/db";
+// import EditProfileButton from "@/components/ui/editprofile-button";
 
 export default async function ProfilePage({
   params,
@@ -57,9 +56,7 @@ export default async function ProfilePage({
       </div>
 
       {isOwnProfile ? (
-        <div className="mt-5">
-          <Button variant="outline">Edit Profile</Button>
-        </div>
+        <div className="mt-5">{/* <EditProfileButton /> */}</div>
       ) : (
         <div className="mt-5">
           <Button variant="outline" disabled>
